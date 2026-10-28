@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.venv/
+.build-venv/
+build/
+dist/
+.pytest_cache/
+/validation/*.png
+/validation/*.xlsx
+/validation/*.tif
+/validation/*.tiff
+/validation/*.pdf
+/validation/*.svg
+/validation/selftest.stdout
+/validation/selftest.stderr
+/validation/self-test-error.txt

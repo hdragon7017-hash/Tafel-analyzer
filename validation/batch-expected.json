@@ -1,0 +1,26 @@
+[
+  {
+    "sample": "group-a/sample.txt",
+    "area": 1.13,
+    "Eeq": 0.0007083547082473357,
+    "log_j0": -0.1370472765476432,
+    "j0": 0.7293781070910785,
+    "cathodic_slope": -9.6241,
+    "anodic_slope": 10.49294,
+    "cathodic_intercept": -0.13023,
+    "anodic_intercept": -0.14448,
+    "export_rows_-0.3_0.3": 601
+  },
+  {
+    "sample": "group-b/sample.txt",
+    "area": 2.26,
+    "Eeq": 0.003368411095608579,
+    "log_j0": -0.15010362758868617,
+    "j0": 0.7077768806431946,
+    "cathodic_slope": -4.82828,
+    "anodic_slope": 5.74347,
+    "cathodic_intercept": -0.1338399956639812,
+    "anodic_intercept": -0.1694499956639812,
+    "export_rows_-0.3_0.3": 601
+  }
+]
