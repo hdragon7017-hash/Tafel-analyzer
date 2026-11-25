@@ -1,12 +1,33 @@
 [CmdletBinding()]
 param(
     [string]$PythonExe = "",
-    [string]$OutputDirectory = "dist"
+    [string]$OutputDirectory = "dist",
+    [string]$UPXDirectory = ""
 )
 
 $ErrorActionPreference = "Stop"
 $projectRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 $venvPath = Join-Path $projectRoot ".build-venv"
+
+if (-not [string]::IsNullOrWhiteSpace($UPXDirectory)) {
+    $resolvedUPXDirectory = if ([System.IO.Path]::IsPathRooted($UPXDirectory)) {
+        $UPXDirectory
+    } else {
+        Join-Path $projectRoot $UPXDirectory
+    }
+    $resolvedUPXDirectory = (Resolve-Path -LiteralPath $resolvedUPXDirectory).Path
+    if (-not (Test-Path -LiteralPath (Join-Path $resolvedUPXDirectory "upx.exe"))) {
+        throw "UPXDirectory must contain upx.exe: $resolvedUPXDirectory"
+    }
+    $env:PATH = "$resolvedUPXDirectory;$env:PATH"
+}
+
+$upxCommand = Get-Command upx.exe -ErrorAction SilentlyContinue
+if ($null -ne $upxCommand) {
+    Write-Host "UPX compression enabled: $($upxCommand.Source)"
+} else {
+    Write-Warning "UPX was not found; the program will still build, but its binary dependencies will not be UPX-compressed."
+}
 
 if ([string]::IsNullOrWhiteSpace($PythonExe)) {
     $PythonExe = Join-Path $projectRoot ".venv\Scripts\python.exe"

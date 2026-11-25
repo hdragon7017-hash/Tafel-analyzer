@@ -126,3 +126,11 @@ python -m unittest discover -s tests -v
 ```
 
 自检会加载内置示例、完成拟合和绘图、验证单文件绘图数据 Excel、混合批处理及 XLSX 汇总/绘图表、趋势图和 Excel、PNG/TIFF/PDF/SVG 拟合图，并检查临时文件夹的导入拖放路由和内置离线帮助，成功时退出码为 0。自动化测试使用合成数据与已知参考公式；尚无实际 CHI604E 数据及 Origin 对照结果。当前不支持 XLSX 原始数据导入或自动挑选 Tafel 区域。
+
+为了缩小下载体积，可选用 Windows x64 [UPX 官方发行版](https://github.com/upx/upx/releases)。将压缩包解压后，把其中含 `upx.exe` 的目录传给构建脚本，例如：
+
+```powershell
+.\build.ps1 -UPXDirectory "C:\tools\upx-5.3.0-win64"
+```
+
+也可将 `upx.exe` 所在目录加入 `PATH`。如果未找到 UPX，程序仍会正常构建，但文件会较大。UPX 可能增加启动时解压时间，个别安全软件也可能对压缩包产生误报；分发前建议扫描最终 EXE。UPX 只用于构建，不包含在分析器里。
